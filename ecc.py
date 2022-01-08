@@ -136,6 +136,26 @@ if __name__ == '__main__':
     print()
     P = Point(45, 720)
     print("P: "+str(P))
-    n = 113
+    n = 111
     print("n: " + str(n))
     print("nP: " + str(multiply(P, n)))
+
+    print("\n \nSignature:")
+    G = Point(416, 55)
+    e = 11
+    d = 5
+    k = 6
+    kG = multiply(G, k)
+    print("kG: " + str(kG))
+    r = int(kG.x) % 13
+    z = 11
+    s = (z * (e + d * r)) % 13
+    signature = Point(r, s)
+    print("Signature: "+str(signature))
+    Q = multiply(G, d)
+
+    v = 6 % 13 # s**-1 mod n
+    u1 = e * v % 13
+    u2 = int(signature.x) * v % 13
+    X = add(multiply(G, u1), multiply(Q, u2))
+    print("X="+str(X))
